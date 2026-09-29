@@ -44,7 +44,8 @@ public enum HPatch {
 
         let code: Int32 = diff.withUnsafeFileSystemRepresentation { diffPath in
             output.withUnsafeFileSystemRepresentation { outPath in
-                withOptionalFileSystemRepresentation(old) { oldPath in
+                guard let diffPath, let outPath else { return HPatchError.options.code }
+                return withOptionalFileSystemRepresentation(old) { oldPath in
                     hpatchz(
                         oldPath, diffPath, outPath,
                         options.cacheMemory ?? -1,
