@@ -1,7 +1,7 @@
 Third-party notices
 ===================
 
-This package is licensed under the GNU General Public License v3 (see LICENSE).
+This package is licensed under the MIT License (see LICENSE).
 It compiles HDiffPatch v5.1.3 and its dependencies from source (the Sources/CHPatch/HDiffPatch5
 submodule). Binaries built from this package include the components below under their own licenses.
 zlib is linked from the system SDK and is not included.
