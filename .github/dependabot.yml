@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+
+  - package-ecosystem: swift
+    directory: /
+    schedule:
+      interval: weekly
+
+  # HDiffPatch5 (and its nested deps). Bumps may need hpatchSources in Package.swift updated.
+  - package-ecosystem: gitsubmodule
+    directory: /
+    schedule:
+      interval: weekly

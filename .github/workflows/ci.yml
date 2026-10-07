@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [senpai]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  macos:
+    name: macOS (build & test)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+      - run: swift --version
+      - run: swift build
+      - run: swift test
+
+  ios:
+    name: iOS (build)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+      - run: >-
+          xcodebuild build
+          -scheme HPatch
+          -destination 'generic/platform=iOS'
+          CODE_SIGNING_ALLOWED=NO
